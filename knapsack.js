@@ -5,7 +5,9 @@ function Objects(name, weight, value) {
   this.value = value;
 }
 
-// function to get a particular list of objects given an interval of elements
+/*
+ function to get a particular random list of objects given an interval of elements 
+ to avoid entring objects manually*/
 
 const items = (min, max) => {
   // let's make items array to not be empty and the computation start at index 1 
@@ -24,7 +26,9 @@ const items = (min, max) => {
 function tableOfMaxProfit(capacity, items) {
   // some check first
   if (!(capacity > 0 && items.length)) {
-    console.warn("capacity should be a positive number and array not empty");
+    console.warn(
+      "capacity should be a positive (> 0) number and array of object not empty"
+    );
   } else {
     let itemsSize = items.length; 
     let tabMaxProfit = [];
@@ -106,4 +110,4 @@ function tableOfMaxProfit(capacity, items) {
     console.log(objectUsed);
   }
 }
-console.log(tableOfMaxProfit(20, items()));
+console.log(tableOfMaxProfit(-12, items(10,20)));
