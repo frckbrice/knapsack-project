@@ -48,13 +48,6 @@ body {
   font-size: 5vh;
 }
 
-/* .input-of-object,
-#weightInput {
-  height: 5vh;
-  font-size: 18px;
-  background-color: var(--pink);
-} */
-
 .input-weight {
   width: 100px;
 }
@@ -99,7 +92,7 @@ body {
   flex-basis: 50%;
   height: fit-content;
   min-height: 60vh;
-  background-color: rgba(165, 42, 42, 0.37);
+  background-color: rgba(165 42 42 / 37%);
   display: flex;
   flex-direction: column;
   row-gap: 10%;
@@ -112,7 +105,7 @@ body {
 #container {
   flex-basis: 45%;
   height: fit-content;
-  background-color: rgba(165, 42, 42, 0.37);
+  background-color: rgba(165 42 42 / 37%);
   display: flex;
   flex-direction: column;
   row-gap: 10%;
@@ -152,10 +145,6 @@ body {
   border: 1px solid #ccc;
 }
 
-.pregress-bar-div {
-  margin-top: 30px;
-}
-
 .max-capacity {
   margin: 0 15px 0 0;
 }
@@ -187,6 +176,40 @@ body {
   align-items: flex-end;
  font-size: 16px;
 }
+
+.label-progressbar {
+  margin: 2%;
+}
+
+.pregress-bar-div {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.resulting-bag {
+  margin-top: 10%
+}
+
+.progress {
+  background-color: var(--dark);
+  border-radius: 20px;
+  height: 30px;
+  width: 300px;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: repeating-linear-gradient(to right,#79e979, #65dd65,#0BDA51);
+  border-radius: 20px;
+  color: aliceblue;
+  height: 100%;
+  width: 0; /* we need the progress bar to start from0*/
+  transition: 1s ease 0.3s;
+}
+
 
 @media screen and (max-width: 360px) {
   .add-object-btn,

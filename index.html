@@ -15,72 +15,82 @@
   <body>
     <h1 class="title">Knapsack</h1>
     <main id="main">
-    <div id="super-container">
-      <!-- container for list of weights -->
-      <div id="container1">
-        <div class="div-for-form">
-          <div class="div-name">
-            <label for="name-of-object">name : </label>
-            <input type="text" name="name-of-object" class="input-of-object" id="input-name" />
+      <div id="super-container">
+        <!-- container for list of weights -->
+        <div id="container1">
+          <div class="div-for-form">
+            <div class="div-name">
+              <label for="name-of-object">name : </label>
+              <input
+                type="text"
+                name="name-of-object"
+                class="input-of-object"
+                id="input-name"
+              />
+            </div>
+            <div class="div-weight">
+              <label for="weight">weight in kg: </label>
+              <input
+                type="number"
+                name="weight"
+                class="input-of-object"
+                id="input-weight"
+              />
+            </div>
+            <div class="div-value">
+              <label for="value">value in $: </label>
+              <input
+                type="number"
+                name="value"
+                class="input-of-object"
+                id="input-value"
+              />
+            </div>
           </div>
-          <div class="div-weight">
-            <label for="weight">weight in kg: </label>
+          <div class="div-for-add-btn">
             <input
-              type="number"
-              name="weight"
-              class="input-of-object" id="input-weight" />
-          </div>
-          <div class="div-value">
-            <label for="value">value in $: </label>
-            <input
-              type="number"
-              name="value"
-              class="input-of-object" id="input-value"
+              type="submit"
+              name="submit"
+              class="add-object-btn"
+              value="Add to list"
             />
           </div>
-        </div>
-        <div class="div-for-add-btn">
-          <input
-            type="submit"
-            name="submit"
-            class="add-object-btn"
-            value="Add to list"
-          />
-        </div>
-        <!-- the div that contain the list of objects -->
-        <div class="div-list-of-objects">
-          <div class="div-for-head-of-list">
-            <!-- <p><label for="">id</label></p> -->
-            <p><label for="">name</label></p>
-            <p><label for="">weight</label></p>
-            <p><label for="">value</label></p>
+          <!-- the div that contain the list of objects -->
+          <div class="div-list-of-objects">
+            <div class="div-for-head-of-list">
+              <!-- <p><label for="">id</label></p> -->
+              <p><label for="">name</label></p>
+              <p><label for="">weight</label></p>
+              <p><label for="">value</label></p>
+            </div>
+            <ul class="ul-of-objects"></ul>
           </div>
-           <ul class="ul-of-objects"></ul>
+        </div>
+        <!-- container for the display -->
+        <div id="container">
+          <div class="max-weight-div">
+            <label for="max-weight" class="max-capacity">Bag Capacity : </label>
+            <input
+              type="number"
+              name="max-weight"
+              class="input-for-capacity"
+              placeholder="Max Capacity"
+            /><label for="max-weight" class="max-capacity">kg </label>
+          </div>
+          <div class="pregress-bar-div">
+            <label for="progress-bar" class="label-progressbar"
+              >percentage :
+            </label>
+            <div class="progress">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="resulting-bag"></div>
+          </div>
+          <div class="done-div">
+            <button class="done-btn position-btn">Done</button>
+          </div>
         </div>
       </div>
-      <!-- container for the display -->
-      <div id="container">
-        <div class="max-weight-div">
-          <label for="max-weight" class="max-capacity">Bag Capacity : </label>
-          <input
-            type="number"
-            name="max-weight"
-            class="input-for-capacity"
-            placeholder="Max Capacity"
-          />
-        </div>
-        <div class="pregress-bar-div">
-          <label for="progress-bar" class="progressbar"
-            >percentage of filling the bag :
-          </label>
-          <div class="progress-bar"></div>
-          <div class="resulting-bag"></div>
-        </div>
-        <div class="done-div">
-          <button class="done-btn position-btn">Done</button>
-        </div>
-      </div>
-    </div>
     </main>
   </body>
 </html>

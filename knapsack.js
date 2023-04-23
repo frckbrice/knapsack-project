@@ -43,35 +43,39 @@ function addOjects(e) {
 }
 
 function createArrayObject() {
-let inputName = document.querySelector("#input-name").value;
-let inputWeight = parseFloat(document.querySelector("#input-weight").value);
-let inputValue = parseFloat(document.querySelector("#input-value").value);
+  let inputName = document.querySelector("#input-name").value;
+  let inputWeight = document.querySelector("#input-weight").value;
+  let inputValue = document.querySelector("#input-value").value;
 
-let arrayOfObject = [{}];
-console.log(inputValue);
-console.log(inputWeight);
-//to not allow empty input
-if (!inputName || !inputValue || !inputWeight) {
-  alert("empty input value not allowed");
-  return false;
-} else {
-  // to get inputs while the number is less than 20
-  if (ulListOfObjects.childElementCount <= 20) {
-    // to create an array of abjects
-Array.from(ulListOfObjects.children).forEach((line) => {
-  console.log(line.children[2].textContent);
-  inputName = parse(line.children[0].textContent);
-  inputWeight = line.children[1].textContent;
-  inputValue = line.children[2].textContent;
-
-  let item = new Objects(`${inputName}`, `${inputWeight}`, `${inputValue}`);
-
-  arrayOfObject.push(item);
-});
+  let arrayOfObject = [{}];
+  console.log(inputValue);
+  console.log(inputWeight);
+  //to not allow empty input
+  if (!inputName || !inputValue || !inputWeight) {
+    alert("empty input value not allowed");
+    return false;
+  } else {
+    // to get inputs while the number is less than 20
+    if (ulListOfObjects.childElementCount <= 20) {
+      // to create an array of abjects
+      Array.from(ulListOfObjects.children).forEach((line) => {
+        console.log(line.children[2].textContent);
+        inputName = line.children[0].textContent;
+        inputWeight = line.children[1].textContent;
+        inputValue = line.children[2].textContent;
+        //create an object
+        let item = new Objects(
+          `${inputName}`,
+          `${inputWeight}`,
+          `${inputValue}`
+        );
+        // to push object to array
+        arrayOfObject.push(item);
+      });
+    }
+    // console.log(arrayOfObject);
+    return arrayOfObject;
   }
-  console.log(arrayOfObject);
-  return arrayOfObject;
-}
 }
 
 //* create the constructor of objects that we need for the purpose
@@ -111,10 +115,12 @@ function bags(capacity, items, weight, value) {
 
 function knapSack(e) {
   e.preventDefault();
+
+  //to get max capacity of the bag
   const capacity = parseFloat(
     document.querySelector(".input-for-capacity").value
   );
-
+  // to get the list of objets to choose from
   const items = createArrayObject();
 
   // some check first
@@ -122,7 +128,6 @@ function knapSack(e) {
     alert(
       "capacity must be a positive (> 0) number and list of object(s) not empty"
     );
-    return false;
   } else {
     console.log("the receive array is : ");
     console.table(items);
@@ -149,7 +154,7 @@ function knapSack(e) {
       w = 0,
       optimalValue = 0,
       indexOptimalValue = 0,
-      weigh = 0;
+      totalWeigh = 0;
     //print list of object used for this case of searching the optimal value
     console.log();
     console.log("The list of objects used for computation of optimal value: ");
@@ -159,8 +164,10 @@ function knapSack(e) {
 
     for (i = 1; i < newitems.length; i++) {
       // get the weight and the value of the current item
-      let wi = newitems[i].weight;
-      let vi = newitems[i].value;
+      let wi = parseFloat(newitems[i].weight);
+      console.log(typeof wi);
+      let vi = parseFloat(newitems[i].value);
+      console.log(typeof vi);
       for (w = 1; w <= capacity; w++) {
         // to have the right value in the table
         if (w >= wi) {
@@ -170,14 +177,14 @@ function knapSack(e) {
           );
         }
       }
-      //* *to get the optimal value of the table and its index.     sometimes the optimal value is not right-bottom corner element
+      // to get the optimal value of the table and its index.     sometimes the optimal value is not right-bottom corner element
       if (tabMaxProfit[i][capacity] >= optimalValue) {
         optimalValue = tabMaxProfit[i][capacity];
         indexOptimalValue = i;
       }
     }
 
-    //* return tabMaxProfit;
+    // return tabMaxProfit;
     console.log();
     console.log("The table after computing the optimal value is: ");
     console.table(tabMaxProfit);
@@ -185,16 +192,16 @@ function knapSack(e) {
       "the optimal value for this sequence of objects is : " + optimalValue
     );
 
-    //* serching the items that led us to optimal value
+    // serching the items that led us to optimal value
     let c = capacity;
     let objectUsed = [];
 
-    //*going back in the table from the optimal value index to the original value index to get elements of the used list
+    //going back in the table from the optimal value index to the original value index to get elements of the used list
     for (let i = indexOptimalValue; i >= 1; i--) {
       if (tabMaxProfit[i][c] > tabMaxProfit[i - 1][c]) {
-        objectUsed.push(i);
+        objectUsed.push(newitems[i].name);
         c -= newitems[i].weight;
-        weigh += newitems[i].weight;
+        totalWeigh += parseFloat(newitems[i].weight);
       }
     }
     console.log();
@@ -203,18 +210,28 @@ function knapSack(e) {
     );
     objectUsed = objectUsed.reverse();
 
-    //* to show the object used to achieve the goal while taking them
+    // to show the object used to achieve the goal while taking them
     console.log();
     let newBags = new bags(
       capacity + "kg",
       objectUsed,
-      weigh + "kg",
+      totalWeigh + "kg",
       optimalValue + "$"
     );
+    // the progress bar
+    // changeWidthofProgressBar();
+      const progressBar = document.querySelector(".progress-bar");
+
+      progressBar.style.width = `${(totalWeigh / capacity) * 100}%`;
+      progressBar.innerHTML = `${Math.ceil(eval(totalWeigh / capacity) * 100)}%`;
+console.log(totalWeigh);
+console.log(capacity);
+console.log(totalWeigh/capacity);
     console.log();
     console.log(
       "the return object containing net capacity of the bags, set of used items, total weight of such items and the optimal value is :  "
     );
+
     console.log();
     console.log(newBags);
     document.querySelector(".resulting-bag").innerHTML = JSON.stringify(
@@ -224,5 +241,14 @@ function knapSack(e) {
     );
   }
 }
+
+//* function to change the width of progress bar
+/*
+function changeWidthofProgressBar() {
+  const progressBar = document.querySelector(".progress-bar");
+
+  progressBar.style.width = `${(totalWeigh / capacity) * 100}%`;
+  progressBar.innerHTML = `${Math.ceil(totalWeigh / capacity) * 100}%`;
+}*/
 
 // console.log(knapSack(15, items(1, 20)));
