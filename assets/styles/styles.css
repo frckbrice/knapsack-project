@@ -1,0 +1,195 @@
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+  /* font-family: 'Secular One', sans-serif; */
+  padding: 0;
+  margin: 0;
+  border: 1px solid #990c0c;
+}
+
+:root {
+  --dark: #374151;
+  --darker: #1f2937;
+  --darkest : #111827;
+  --gray : #687280;
+  --light: #eee;
+  --pink: #ec4899;
+  --purple: #885cf6;
+}
+
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Shadows Into Light", cursive;
+  position: relative;
+  background: linear-gradient(rgba(0 0 0 / 50%), rgba(0 0 0 / 50)),
+    url("../images/bgknapsack.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.title {
+  position: absolute;
+  top: 5vh;
+  color: aliceblue;
+  font-size: 5vh;
+}
+
+.input-of-object,
+#weightInput {
+  height: 5vh;
+  font-size: 18px;
+  background-color: aqua;
+}
+
+.input-weight {
+  width: 100px;
+}
+
+/* .done-div {
+  text-align: center;
+  float: bottom;
+} */
+
+.add-object-btn,
+.done-btn {
+  width: 10vw;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: bold;
+  background-image: linear-gradient(to right, var(--pink), var(--purple));
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
+}
+
+.done-div {
+  position: absolute;
+  top: 85%;
+  left: 13vw ;
+}
+
+/* adding super container */
+
+#super-container {
+  display: flex;
+  gap: 3%;
+  font-family: "Ysabeau", sans-serif;
+  font-size: 3vh;
+}
+
+/* adding container1 */
+
+#container1 {
+  flex-basis: 50%;
+  height: fit-content;
+  min-height: 60vh;
+  background-color: rgba(165, 42, 42, 0.37);
+  display: flex;
+  flex-direction: column;
+  row-gap: 10%;
+  padding: 15px;
+  color: aliceblue;
+  border: 1px solid #ddd;
+  /* flex-wrap: wrap; */
+}
+
+#container {
+  flex-basis: 45%;
+  height: fit-content;
+  background-color: rgba(165, 42, 42, 0.37);
+  display: flex;
+  flex-direction: column;
+  row-gap: 10%;
+  /* align-items: center; */
+  /* justify-content: center; */
+  padding: 15px;
+  /* font-family: 'Mouse Memoirs', sans-serif; */
+  color: aliceblue;
+  min-height: 60vh;
+  border: 1px solid #ddd;
+  position: relative;
+}
+
+.div-for-form {
+  display: flex;
+  gap: 0.7em;
+}
+
+.div-value,
+.div-weight,
+.div-name {
+  flex-basis: 30%;
+  text-align: center;
+}
+
+.input-for-capacity,
+.input-of-object {
+  width: 15vw;
+  height: 5vh;
+  background-color: rgba(131, 248, 248, 0.705);
+  color: aliceblue;
+}
+
+.div-for-add-btn {
+  margin: 5% 0 3%;
+  text-align: center;
+}
+
+.div-list-of-objects {
+  margin-top: 0;
+  border: 1px solid #ccc;
+}
+
+.pregress-bar-div {
+  margin-top: 30px;
+}
+
+.max-capacity {
+  margin: 0 15px 0 0;
+}
+
+.ul-of-objects {
+  border: 1px solid #ccc;
+}
+
+.div-for-head-of-list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.li-for-objects {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  align-items: flex-start;
+}
+
+span {
+  max-width: 100px;
+  padding: 0 5px ;
+}
+
+@media screen and (max-width: 320px) {
+  .add-object-btn,
+  .done-btn {
+    width: 30vw;
+  }
+
+  .div-for-form {
+    display: block;
+    margin: 0 auto;
+  }
+
+  #super-container {
+    display: block;
+    gap: 3%;
+  }
+}
