@@ -10,13 +10,12 @@
 :root {
   --dark: #444a538e;
   --darker: #1f2937;
-  --darkest : #111827;
-  --gray : #687280;
+  --darkest: #111827;
+  --gray: #687280;
   --light: #eee;
   --pink: #ec4899;
   --purple: #885cf6;
 }
-
 
 body {
   width: 100vw;
@@ -27,8 +26,9 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  /* overflow: hidden; */
+  overflow: show;
   padding: 0 20px;
+  border: 1px solid blue;
 }
 
 #main {
@@ -51,11 +51,6 @@ body {
 .input-weight {
   width: 100px;
 }
-
-/* .done-div {
-  text-align: center;
-  float: bottom;
-} */
 
 .add-object-btn,
 .done-btn {
@@ -81,17 +76,19 @@ body {
 /* adding super container */
 
 #super-container {
+  
   display: flex;
   gap: 3%;
   font-family: "Ysabeau", sans-serif;
+  /* background-color: #885cf6; */
 }
 
 /* adding container1 */
 
 #container1 {
+  /* font-size: 3vh; */
   flex-basis: 50%;
-  height: fit-content;
-  min-height: 60vh;
+  height: 60vh;
   background-color: rgba(165 42 42 / 37%);
   display: flex;
   flex-direction: column;
@@ -103,20 +100,20 @@ body {
 }
 
 #container {
+  /* font-size: 3vh; */
   flex-basis: 45%;
   height: fit-content;
   background-color: rgba(165 42 42 / 37%);
   display: flex;
   flex-direction: column;
   row-gap: 10%;
-  /* align-items: center; */
-  /* justify-content: center; */
   padding: 15px;
   /* font-family: 'Mouse Memoirs', sans-serif; */
   color: aliceblue;
   min-height: 60vh;
   border: 1px solid #ddd;
   position: relative;
+  font-family: "Shadows Into Light", cursive;
 }
 
 .div-for-form {
@@ -132,7 +129,13 @@ body {
   text-align: center;
 }
 
-.input-for-capacity,
+.input-for-capacity {
+  width: 23vw;
+  height: 5vh;
+  background-color: var(--dark);
+  color: aliceblue;
+}
+
 .input-of-object {
   width: 15vw;
   height: 5vh;
@@ -152,7 +155,7 @@ body {
 .ul-of-objects {
   border: 1px solid #ccc;
   background-color: var(--dark);
-  color: aliceblue ;
+  color: aliceblue;
 }
 
 .div-for-head-of-list {
@@ -165,44 +168,50 @@ body {
 
 .li-for-objects {
   display: flex;
-   justify-content: space-evenly;/**/
-  align-items: flex-start; 
-   list-style: none; 
+  justify-content: space-evenly;
+  align-items: flex-start;
+  list-style: none;
 }
 
 .ptag {
   display: flex;
- margin-right: 0;
+  margin-right: 0;
   align-items: flex-end;
- font-size: 16px;
+  font-size: 16px;
 }
 
 .label-progressbar {
-  margin: 2%;
+  margin: 2% 0;
 }
 
-.pregress-bar-div {
+.progress-bar-div {
   margin-top: 5vh;
   display: flex;
   flex-direction: column;
 }
 
 .resulting-bag {
-  margin-top: 10%
+  margin-top: 10%;
 }
 
 .progress {
   background-color: var(--dark);
   border-radius: 20px;
   height: 30px;
-  width: 300px;
+  width: 95%;
+  margin: 0 2%;
 }
 
 .progress-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: repeating-linear-gradient(to right,#79e979, #65dd65,#0BDA51);
+  background-image: repeating-linear-gradient(
+    to right,
+    #79e979,
+    #65dd65,
+    #0bda51
+  );
   border-radius: 20px;
   color: aliceblue;
   height: 100%;
@@ -210,20 +219,221 @@ body {
   transition: 1s ease 0.3s;
 }
 
+@media screen and (max-width: 768px) {
+  #super-container {
+    flex-direction: column;
+    row-gap: 2%;
+    width: 90vw;
+    height: 95%;
+  }
 
-@media screen and (max-width: 360px) {
+  body {
+    height: 100vh;
+    padding-bottom: 3%;
+  }
+
+  #container {
+    font-size: 2vh;
+    padding: 2%;
+    height: auto;
+    justify-content: space-evenly;
+  }
+
+  #container1 {
+    font-size: 2vh;
+    padding: 2%;
+    height: 100%;
+  }
+
+  #main {
+    height: 89vh;
+    margin-top: 2%;
+    padding: 1%;
+    margin-bottom: 3%;
+  }
+
+  .div-for-head-of-list {
+    font-size: 2vh;
+  }
+
+  .input-for-capacity {
+    width: 65%;
+  } 
+
+  .div-value,
+  .div-weight,
+  .div-name {
+    width: 100%;
+  }
+
+  .add-object-btn,
+  .done-btn {
+    width: 25vw;
+    height: 5vh;
+  }
+
+  .progress {
+    height: 45px;
+  }
+
+  .done-div {
+    margin: 0 3%;
+    text-align: center;
+  }
+
+  .progress-bar-div {
+    margin: 0;
+  }
+}
+
+
+@media screen and (max-width: 425px) {
   .add-object-btn,
   .done-btn {
     width: 30vw;
   }
 
+  .div-for-head-of-list {
+    width: 98%;
+  }
+
   .div-for-form {
-    display: block;
     margin: 0 auto;
+    width: 100%;
+    font-size: 2vh;
+  }
+
+  .input-of-object {
+    width: 100%;
+  }
+
+  .input-for-capacity {
+    width: 59%;
+  }
+
+  .div-list-of-objects {
+    width: 98%;
+    justify-content: space-between;
   }
 
   #super-container {
-    display: block;
-    gap: 3%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2%;
+    width: 90vw;
+    height: 100%;
+  }
+
+  #container {
+    min-height: 0;
+    height: 100%;
+    padding: 2%;
+  }
+
+  #container1 {
+    padding: 2%;
+    height: fit-content;
+    padding: 2%;
+  }
+
+  body {
+    padding-bottom: 5%;
+    height: auto;
+    overflow: hidden;
+  }
+
+   .progress {
+    height: 28px;
   }
 }
+
+
+@media screen and (max-width: 375px) {
+  .add-object-btn,
+  .done-btn {
+    width: 30vw;
+    height: 5vh;
+  }
+
+  .div-for-head-of-list {
+    width: 98%;
+  }
+
+  .div-for-form {
+    margin: 0 auto;
+    width: 100%;
+    font-size: 2vh;
+  }
+
+  .input-of-object {
+    width: 100%;
+  }
+
+  .input-for-capacity {
+    width: 55%;
+  }
+
+  .div-list-of-objects {
+    width: 98%;
+    justify-content: space-between;
+  }
+
+  #super-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2%;
+    width: 90vw;
+    height: 100%;
+  }
+
+  #container {
+    min-height: 0;
+    height: 100%;
+    padding: 2%;
+  }
+
+  #container1 {
+    padding: 2%;
+    height: fit-content;
+    padding: 2%;
+  }
+
+  body {
+    padding-bottom: 5%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .max-weight-div {
+    margin-top: 5%;
+  }
+
+  .resulting-bag {
+    margin: 0;
+  }
+
+  .done-div {
+    margin-bottom: 2%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+.input-for-capacity {
+    width: 45%;
+  }
+
+  .progress {
+    height: 25px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
