@@ -14,28 +14,28 @@
   </head>
   <body>
     <h1 class="title">Knapsack</h1>
+    <main id="main">
     <div id="super-container">
       <!-- container for list of weights -->
       <div id="container1">
         <div class="div-for-form">
           <div class="div-name">
             <label for="name-of-object">name : </label>
-            <input type="text" name="name-of-object" class="input-of-object input-name" />
+            <input type="text" name="name-of-object" class="input-of-object" id="input-name" />
           </div>
           <div class="div-weight">
             <label for="weight">weight in kg: </label>
             <input
               type="number"
               name="weight"
-              class="input-of-object input-weight"
-            />
+              class="input-of-object" id="input-weight" />
           </div>
           <div class="div-value">
             <label for="value">value in $: </label>
             <input
               type="number"
               name="value"
-              class="input-of-object input-value"
+              class="input-of-object" id="input-value"
             />
           </div>
         </div>
@@ -55,32 +55,7 @@
             <p><label for="">weight</label></p>
             <p><label for="">value</label></p>
           </div>
-          <ul class="ul-of-objects">
-            <!-- <li class="li-for-objects">
-              <p>01</p>
-              <p>Iphone</p>
-              <p>0.4kg</p>
-              <p>180$</p>
-            </li>
-            <li class="li-for-objects">
-              <p>02</p>
-              <p>Smart TV</p>
-              <p>5kg</p>
-              <p>300$</p>
-            </li>
-            <li class="li-for-objects">
-              <p>03</p>
-              <p>Laptop</p>
-              <p>7kg</p>
-              <p>800$</p>
-            </li>
-            <li class="li-for-objects">
-              <p>04</p>
-              <p>Chair</p>
-              <p>0.4kg</p>
-              <p>65$</p>
-            </li> -->
-          </ul>
+           <ul class="ul-of-objects"></ul>
         </div>
       </div>
       <!-- container for the display -->
@@ -91,7 +66,7 @@
             type="number"
             name="max-weight"
             class="input-for-capacity"
-            placeholder="Enter Capacity"
+            placeholder="Max Capacity"
           />
         </div>
         <div class="pregress-bar-div">
@@ -106,5 +81,6 @@
         </div>
       </div>
     </div>
+    </main>
   </body>
 </html>

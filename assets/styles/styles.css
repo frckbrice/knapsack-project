@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-size: 16px;
+  /* font-size: 16px; */
   /* font-family: 'Secular One', sans-serif; */
   padding: 0;
   margin: 0;
@@ -8,7 +8,7 @@
 }
 
 :root {
-  --dark: #374151;
+  --dark: #444a538e;
   --darker: #1f2937;
   --darkest : #111827;
   --gray : #687280;
@@ -21,33 +21,39 @@
 body {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Shadows Into Light", cursive;
   position: relative;
   background: linear-gradient(rgba(0 0 0 / 50%), rgba(0 0 0 / 50)),
     url("../images/bgknapsack.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 0 20px;
 }
 
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Shadows Into Light", cursive;
+  margin-top: 5%;
+}
+
 .title {
-  position: absolute;
-  top: 5vh;
+  /* position: absolute;
+  top: 5vh; */
+  margin-top: 5%;
+  text-align: center;
   color: aliceblue;
   font-size: 5vh;
 }
 
-.input-of-object,
+/* .input-of-object,
 #weightInput {
   height: 5vh;
   font-size: 18px;
-  background-color: aqua;
-}
+  background-color: var(--pink);
+} */
 
 .input-weight {
   width: 100px;
@@ -69,10 +75,14 @@ body {
   /* -webkit-text-fill-color: transparent; */
 }
 
+.div-for-add-btn {
+  margin: 5% 0 3%;
+  text-align: center;
+}
+
 .done-div {
-  position: absolute;
-  top: 85%;
-  left: 13vw ;
+  margin: 5% 0 3%;
+  text-align: center;
 }
 
 /* adding super container */
@@ -81,7 +91,6 @@ body {
   display: flex;
   gap: 3%;
   font-family: "Ysabeau", sans-serif;
-  font-size: 3vh;
 }
 
 /* adding container1 */
@@ -120,6 +129,7 @@ body {
 .div-for-form {
   display: flex;
   gap: 0.7em;
+  /* font-size: 3vh; */
 }
 
 .div-value,
@@ -133,13 +143,8 @@ body {
 .input-of-object {
   width: 15vw;
   height: 5vh;
-  background-color: rgba(131, 248, 248, 0.705);
+  background-color: var(--dark);
   color: aliceblue;
-}
-
-.div-for-add-btn {
-  margin: 5% 0 3%;
-  text-align: center;
 }
 
 .div-list-of-objects {
@@ -157,27 +162,33 @@ body {
 
 .ul-of-objects {
   border: 1px solid #ccc;
+  background-color: var(--dark);
+  color: aliceblue ;
 }
 
 .div-for-head-of-list {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
+  font-size: 3vh;
+  font-family: "Shadows Into Light", cursive;
 }
 
 .li-for-objects {
   display: flex;
-  justify-content: space-evenly;
-  list-style: none;
-  align-items: flex-start;
+   justify-content: space-evenly;/**/
+  align-items: flex-start; 
+   list-style: none; 
 }
 
-span {
-  max-width: 100px;
-  padding: 0 5px ;
+.ptag {
+  display: flex;
+ margin-right: 0;
+  align-items: flex-end;
+ font-size: 16px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 360px) {
   .add-object-btn,
   .done-btn {
     width: 30vw;
