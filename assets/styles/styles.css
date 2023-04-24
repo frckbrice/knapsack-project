@@ -76,11 +76,14 @@ body {
 /* adding super container */
 
 #super-container {
-  
   display: flex;
   gap: 3%;
   font-family: "Ysabeau", sans-serif;
   /* background-color: #885cf6; */
+}
+
+h4 {
+  margin-bottom: 0;
 }
 
 /* adding container1 */
@@ -88,11 +91,12 @@ body {
 #container1 {
   /* font-size: 3vh; */
   flex-basis: 50%;
-  height: 60vh;
+  height: fit-content;
+  object-fit: contain;
   background-color: rgba(165 42 42 / 37%);
   display: flex;
   flex-direction: column;
-  row-gap: 10%;
+  row-gap: 5%;
   padding: 15px;
   color: aliceblue;
   border: 1px solid #ddd;
@@ -113,7 +117,7 @@ body {
   min-height: 60vh;
   border: 1px solid #ddd;
   position: relative;
-  font-family: "Shadows Into Light", cursive;
+  /* font-family: "Shadows Into Light", cursive; */
 }
 
 .div-for-form {
