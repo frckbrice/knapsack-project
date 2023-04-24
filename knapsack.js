@@ -36,22 +36,15 @@ function addOjects(e) {
   line.appendChild(pTag3);
 
   ulListOfObjects.appendChild(line);
-
-  //   document.querySelector("#input-name").value = "";
-  //   document.querySelector("#input-weight").value = "";
-  //  document.querySelector("#input-value").value = "";
+  localStorage.setItem("lines", ulListOfObjects.innerHTML);
+  ulListOfObjects.innerHTML = localStorage.getItem("lines");
 }
 
 function createArrayObject() {
-  let inputName = document.querySelector("#input-name").value;
-  let inputWeight = document.querySelector("#input-weight").value;
-  let inputValue = document.querySelector("#input-value").value;
 
   let arrayOfObject = [{}];
-  console.log(inputValue);
-  console.log(inputWeight);
   //to not allow empty input
-  if (!inputName || !inputValue || !inputWeight) {
+  if (ulListOfObjects.childElementCount < 1) {
     alert("empty input value not allowed");
     return false;
   } else {
@@ -59,10 +52,10 @@ function createArrayObject() {
     if (ulListOfObjects.childElementCount <= 20) {
       // to create an array of abjects
       Array.from(ulListOfObjects.children).forEach((line) => {
-        console.log(line.children[2].textContent);
-        inputName = line.children[0].textContent;
-        inputWeight = line.children[1].textContent;
-        inputValue = line.children[2].textContent;
+        // console.log(line.children[2].textContent);
+      let  inputName = line.children[0].textContent;
+      let  inputWeight = line.children[1].textContent;
+      let  inputValue = line.children[2].textContent;
         //create an object
         let item = new Objects(
           `${inputName}`,
@@ -73,7 +66,9 @@ function createArrayObject() {
         arrayOfObject.push(item);
       });
     }
-    // console.log(arrayOfObject);
+     document.querySelector("#input-name").value = '';
+     document.querySelector("#input-weight").value = '';
+     document.querySelector("#input-value").value = '';
     return arrayOfObject;
   }
 }
@@ -224,9 +219,7 @@ function knapSack(e) {
 
       progressBar.style.width = `${(totalWeigh / capacity) * 100}%`;
       progressBar.innerHTML = `${Math.ceil(eval(totalWeigh / capacity) * 100)}%`;
-console.log(totalWeigh);
-console.log(capacity);
-console.log(totalWeigh/capacity);
+
     console.log();
     console.log(
       "the return object containing net capacity of the bags, set of used items, total weight of such items and the optimal value is :  "
