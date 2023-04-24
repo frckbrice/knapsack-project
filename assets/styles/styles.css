@@ -124,13 +124,19 @@ h4 {
   display: flex;
   gap: 0.7em;
   /* font-size: 3vh; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .div-value,
 .div-weight,
 .div-name {
-  flex-basis: 30%;
+  flex-basis: 35%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .input-for-capacity {
@@ -241,12 +247,14 @@ h4 {
     padding: 2%;
     height: auto;
     justify-content: space-evenly;
+    flex-grow: 1;
   }
 
   #container1 {
     font-size: 2vh;
     padding: 2%;
     height: 100%;
+    flex-grow: 1;
   }
 
   #main {
@@ -260,8 +268,10 @@ h4 {
     font-size: 2vh;
   }
 
+  .input-of-object,
   .input-for-capacity {
     width: 65%;
+    font-size: 2vh;
   } 
 
   .div-value,
@@ -288,6 +298,7 @@ h4 {
   .progress-bar-div {
     margin: 0;
   }
+
 }
 
 
