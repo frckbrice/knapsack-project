@@ -6,7 +6,9 @@ the highest value possible.
 Technology: HTML5, CSS3 and Javascript.
 
 Functionning: 
-When you enter the application, you will be in front of an interface divided into two parts.
-The left part is where you will create a list of objects from which the application can choose in order
-to optimally fill the bag. The right part consists in taking the maximum capacity of the bag and presenting 
-the final result, with in addition the rate of filling of the bag.
+In the app, the left panel you can use it to create your own list of objects the app will choose from.
+The right pannel, you just enter the maximum capacity of the bag and press "done" button to see the result.
+
+The result consit of an object that given you the Capacity, the optimal list of objects, the total weight of those objects and the optimal value.
+
+It is also possible to just use the random created list of objects given down. Then you can enter the Capacity of the bag and press "done" button.
