@@ -18,10 +18,12 @@
       <div id="super-container">
         <!-- container for list of weights -->
         <div id="container1">
-          <h4>Fill the field to create a list of objects</h4>
+          <h4>
+            Create a list of Items <span>(20 Items max)</span>
+          </h4>
           <div class="div-for-form">
             <div class="div-name">
-              <label for="name-of-object">name :  </label>
+              <label for="name-of-object">name : </label>
               <input
                 type="text"
                 name="name-of-object"
@@ -76,16 +78,19 @@
               name="max-weight"
               class="input-for-capacity"
               placeholder="Max Capacity"
-            /><label for="max-weight" class="max-capacity">kg </label>
+            /><label for="max-weight" class="max-capacity">&nbsp;kg </label>
           </div>
           <div class="progress-bar-div">
             <label for="progress-bar" class="label-progressbar"
-              >percentage :
+              >State of the knapsack in real time  :
             </label>
             <div class="progress">
               <div class="progress-bar"></div>
             </div>
-            <div class="resulting-bag" style="font-family: Tahoma !important;"></div>
+            <div
+              class="resulting-bag"
+              style="font-family: Tahoma !important"
+            ></div>
           </div>
           <div class="done-div">
             <button class="done-btn position-btn">Done</button>

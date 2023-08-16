@@ -26,7 +26,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  overflow: show;
+  overflow: hidden;
   padding: 0 20px;
   /* border: 1px solid blue; */
 }
@@ -58,9 +58,10 @@ body {
   height: 40px;
   border-radius: 10px;
   font-weight: bold;
-  background-image: linear-gradient(to right, var(--pink), var(--purple));
-  /* -webkit-background-clip: text; */
-  /* -webkit-text-fill-color: transparent; */
+  background-color: rgb(242, 235, 224);
+  /* background-image: linear-gradient(to right, var(--pink), var(--purple)); */
+  /* -webkit-background-clip: text; 
+   -webkit-text-fill-color: transparent;  */
 }
 
 .div-for-add-btn {
@@ -71,6 +72,14 @@ body {
 .done-div {
   margin: 5% 0 3%;
   text-align: center;
+}
+
+#container1 span {
+  color: chartreuse;
+}
+
+#container1 h4 {
+  margin-left: 10px;
 }
 
 /* adding super container */
@@ -140,10 +149,11 @@ h4 {
 }
 
 .input-for-capacity {
-  width: 23vw;
+  width: 22vw;
   height: 5vh;
   background-color: var(--dark);
   color: aliceblue;
+  padding: 0 1rem;
 }
 
 .input-of-object {
@@ -151,6 +161,7 @@ h4 {
   height: 5vh;
   background-color: var(--dark);
   color: aliceblue;
+  padding: 0 1rem;
 }
 
 .div-list-of-objects {
@@ -159,7 +170,7 @@ h4 {
 }
 
 .max-capacity {
-  margin: 0 15px 0 0;
+  margin: 0;
 }
 
 .ul-of-objects {
@@ -191,7 +202,7 @@ h4 {
 }
 
 .label-progressbar {
-  margin: 2% 0;
+  margin: 2% 1rem;
 }
 
 .progress-bar-div {
