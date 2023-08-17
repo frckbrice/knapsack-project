@@ -1,0 +1,484 @@
+* {
+  box-sizing: border-box;
+  /* font-size: 16px; */
+  /* font-family: 'Secular One', sans-serif; */
+  padding: 0;
+  margin: 0;
+  /* border: 1px solid #990c0c; */
+}
+
+:root {
+  --dark: #444a538e;
+  --darker: #1f2937;
+  --darkest: #111827;
+  --gray: #687280;
+  --light: #eee;
+  --pink: #ec4899;
+  --purple: #885cf6;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: linear-gradient(rgba(0 0 0 / 50%), rgba(0 0 0 / 50)),
+    url("../images/bgknapsack.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: scroll;
+  padding: 0 20px;
+  /* border: 1px solid blue; */
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Shadows Into Light", cursive;
+  margin-top: 5%;
+}
+
+.title {
+  /* position: absolute;
+  top: 5vh; */
+  margin-top: 5%;
+  text-align: center;
+  color: aliceblue;
+  font-size: 5vh;
+}
+
+.input-weight {
+  width: 100px;
+}
+
+.add-object-btn,
+.done-btn {
+  width: 10vw;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: bold;
+  background-color: rgb(242, 235, 224);
+  /* background-image: linear-gradient(to right, var(--pink), var(--purple)); */
+  /* -webkit-background-clip: text; 
+   -webkit-text-fill-color: transparent;  */
+}
+
+.div-for-add-btn {
+  margin: 5% 0 3%;
+  text-align: center;
+}
+
+.done-div {
+  margin: 5% 0 3%;
+  text-align: center;
+}
+
+#container1 span {
+  color: chartreuse;
+}
+
+#container1 h4 {
+  margin-left: 10px;
+}
+
+/* adding super container */
+
+#super-container {
+  display: flex;
+  gap: 3%;
+  font-family: "Ysabeau", sans-serif;
+  /* background-color: #885cf6; */
+}
+
+h4 {
+  margin-bottom: 0;
+}
+
+/* adding container1 */
+
+#container1 {
+  /* font-size: 3vh; */
+  flex-basis: 50%;
+  height: fit-content;
+  object-fit: contain;
+  background-color: rgba(165 42 42 / 37%);
+  display: flex;
+  flex-direction: column;
+  row-gap: 5%;
+  padding: 15px;
+  color: aliceblue;
+  border: 1px solid #ddd;
+  /* flex-wrap: wrap; */
+}
+
+#container {
+  /* font-size: 3vh; */
+  flex-basis: 45%;
+  height: fit-content;
+  background-color: rgba(165 42 42 / 37%);
+  display: flex;
+  flex-direction: column;
+  row-gap: 10%;
+  padding: 15px;
+  /* font-family: 'Mouse Memoirs', sans-serif; */
+  color: aliceblue;
+  min-height: 60vh;
+  border: 1px solid #ddd;
+  position: relative;
+  /* font-family: "Shadows Into Light", cursive; */
+}
+
+.div-for-form {
+  display: flex;
+  gap: 0.7em;
+  /* font-size: 3vh; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.div-value,
+.div-weight,
+.div-name {
+  flex-basis: 35%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-for-capacity {
+  width: 22vw;
+  height: 5vh;
+  background-color: var(--dark);
+  color: aliceblue;
+  padding: 0 1rem;
+}
+
+.input-of-object {
+  width: 15vw;
+  height: 5vh;
+  background-color: var(--dark);
+  color: aliceblue;
+  padding: 0 1rem;
+}
+
+.div-list-of-objects {
+  margin-top: 0;
+  border: 1px solid #ccc;
+}
+
+.max-capacity {
+  margin: 0;
+}
+
+.ul-of-objects {
+  border: 1px solid #ccc;
+  background-color: var(--dark);
+  color: aliceblue;
+}
+
+.div-for-head-of-list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  font-size: 3vh;
+  font-family: "Shadows Into Light", cursive;
+}
+
+.li-for-objects {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  list-style: none;
+}
+
+.ptag {
+  display: flex;
+  margin-right: 0;
+  align-items: flex-end;
+  font-size: 16px;
+}
+
+.label-progressbar {
+  margin: 2% 1rem;
+}
+
+.progress-bar-div {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.resulting-bag {
+  margin-top: 10%;
+}
+
+.progress {
+  background-color: var(--dark);
+  border-radius: 20px;
+  height: 30px;
+  width: 95%;
+  margin: 0 2%;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: repeating-linear-gradient(
+    to right,
+    #79e979,
+    #65dd65,
+    #0bda51
+  );
+  border-radius: 20px;
+  color: aliceblue;
+  height: 100%;
+  width: 0; /* we need the progress bar to start from0*/
+  transition: 1s ease 0.3s;
+}
+
+.span2 {
+  float: right;
+  color: chartreuse;
+}
+
+
+.listofFakeObjects {
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin: 1%;
+}
+
+.titleliste {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  #super-container {
+    flex-direction: column;
+    row-gap: 2%;
+    width: 90vw;
+    height: 95%;
+  }
+
+  body {
+    height: 100vh;
+    padding-bottom: 3%;
+  }
+
+  #container {
+    font-size: 2vh;
+    padding: 2%;
+    height: auto;
+    justify-content: space-evenly;
+    flex-grow: 1;
+  }
+
+  #container1 {
+    font-size: 2vh;
+    padding: 2%;
+    height: 100%;
+    flex-grow: 1;
+  }
+
+  #main {
+    height: 89vh;
+    margin-top: 2%;
+    padding: 1%;
+    margin-bottom: 3%;
+  }
+
+  .div-for-head-of-list {
+    font-size: 2vh;
+  }
+
+  .input-of-object,
+  .input-for-capacity {
+    width: 65%;
+    font-size: 2vh;
+  } 
+
+  .div-value,
+  .div-weight,
+  .div-name {
+    width: 100%;
+  }
+
+  .add-object-btn,
+  .done-btn {
+    width: 25vw;
+    height: 5vh;
+  }
+
+  .progress {
+    height: 45px;
+  }
+
+  .done-div {
+    margin: 0 3%;
+    text-align: center;
+  }
+
+  .progress-bar-div {
+    margin: 0;
+  }
+
+}
+
+
+@media screen and (max-width: 425px) {
+  .add-object-btn,
+  .done-btn {
+    width: 30vw;
+  }
+
+  .div-for-head-of-list {
+    width: 98%;
+  }
+
+  .div-for-form {
+    margin: 0 auto;
+    width: 100%;
+    font-size: 2vh;
+  }
+
+  .input-of-object {
+    width: 100%;
+  }
+
+  .input-for-capacity {
+    width: 59%;
+  }
+
+  .div-list-of-objects {
+    width: 98%;
+    justify-content: space-between;
+  }
+
+  #super-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2%;
+    width: 90vw;
+    height: 100%;
+  }
+
+  #container {
+    min-height: 0;
+    height: 100%;
+    padding: 2%;
+  }
+
+  #container1 {
+    padding: 2%;
+    height: fit-content;
+    padding: 2%;
+  }
+
+  body {
+    padding-bottom: 5%;
+    height: auto;
+    overflow: hidden;
+  }
+
+   .progress {
+    height: 28px;
+  }
+}
+
+
+@media screen and (max-width: 375px) {
+  .add-object-btn,
+  .done-btn {
+    width: 30vw;
+    height: 5vh;
+  }
+
+  .div-for-head-of-list {
+    width: 98%;
+  }
+
+  .div-for-form {
+    margin: 0 auto;
+    width: 100%;
+    font-size: 2vh;
+  }
+
+  .input-of-object {
+    width: 100%;
+  }
+
+  .input-for-capacity {
+    width: 55%;
+  }
+
+  .div-list-of-objects {
+    width: 98%;
+    justify-content: space-between;
+  }
+
+  #super-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2%;
+    width: 90vw;
+    height: 100%;
+  }
+
+  #container {
+    min-height: 0;
+    height: 100%;
+    padding: 2%;
+  }
+
+  #container1 {
+    padding: 2%;
+    height: fit-content;
+    padding: 2%;
+  }
+
+  body {
+    padding-bottom: 5%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .max-weight-div {
+    margin-top: 5%;
+  }
+
+  .resulting-bag {
+    margin: 0;
+  }
+
+  .done-div {
+    margin-bottom: 2%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+.input-for-capacity {
+    width: 45%;
+  }
+
+  .progress {
+    height: 25px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
