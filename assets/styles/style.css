@@ -259,6 +259,11 @@ h4 {
   color: white;
 }
 
+.spanlist {
+  font-size: 15px;
+  color: chartreuse;
+}
+
 @media screen and (max-width: 768px) {
   #super-container {
     flex-direction: column;
