@@ -53,11 +53,6 @@ body {
   border-radius: 10px;
   font-weight: bold;
   background-color: rgb(242 235 224);
-
-  /* background-image: linear-gradient(to right, var(--pink), var(--purple)); */
-  
-  /* -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;  */
 }
 
 .div-for-add-btn {
@@ -239,9 +234,9 @@ h4 {
   background-image:
     repeating-linear-gradient(
       to right,
-     #79e979,
-     #65dd65,
-     #0bda51
+      #79e979,
+      #65dd65,
+      #0bda51
     );
   border-radius: 20px;
   color: aliceblue;
