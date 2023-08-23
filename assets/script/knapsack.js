@@ -1,109 +1,205 @@
-// create the constructor of objects that we need for the purpose
-function Objects(name, weight, value) {
-  this.name = name;
-  this.weight = weight;
-  this.value = value;
+
+//* to bind html elements
+
+const doneButton = document.querySelector('.done-btn')
+const ulListOfObjects = document.querySelector('.ul-of-objects')
+const selectTag = document.getElementById('selectitemlist')
+const progressBar = document.querySelector('.progress-bar')
+
+let resultBag = {}
+
+//* add events
+
+doneButton.addEventListener('click', displayResult)
+selectTag.addEventListener('change', createArrayObjectFromSelectTag)
+
+//* create the constructor of objects that we need for the purpose
+function Objects (name, weight, value) {
+  this.name = name
+  this.weight = weight
+  this.value = value
+  return this
 }
 
-// function to get a particular list of objects given an interval of elements
+//*  the knapSack constructor
+function Bags (capacity, items, weight, value) {
+  this.capacity = capacity
+  this.items = items
+  this.weight = weight
+  this.value = value
+  return this
+}
 
-const items = (min, max) => {
-  // let's make items array to not be empty and the computation start at index 1 
-  let arr = [{}];
+/*
+ * function to get a particular random list of objects given an interval of elements
+ * to avoid entring objects manually */
+
+const listOfOfFakeObjects = (min, max) => {
+  //   //* let's make items array to not be empty and the computation start at index 1
+  const arr = []
+  let count = 0
   for (let i = min; i <= max; i++) {
-    let n1 = Math.floor(Math.random() * (max - min)) + min;
-    let n2 = Math.floor(Math.random() * (max - min)) + min;
-    let item = new Objects(`${i}`, n1, n2);
-    arr.push(item);
+    const n1 = Math.floor(Math.random() * (max - min)) + min
+    const n2 = Math.floor(Math.random() * (max - min)) + min
+    arr.push(new Objects(`rebase${i}`, `${n1}`, `${n2}`))
+    count++
+    if (count === 20) break
   }
-  return arr;
-};
+  return arr
+}
 
-// the function to get the maximum value between a set of objects with weight and value
+//* the function to get the maximum value within a set of objects with weight and value
 
-function tableOfMaxProfit(capacity, items) {
-  // some check first
-  if (!(capacity > 0 && items.length)) {
-    console.warn("capacity should be a positive number and array not empty");
+//* build a select tag from array of fake objects
+
+const fakeListOfFakeObjects = listOfOfFakeObjects(1, 100)
+console.log(Array.from(fakeListOfFakeObjects))
+
+//* fill the select tag with fake data
+Array.from(fakeListOfFakeObjects).map((item) => {
+  const itemObject = {
+    name: item.name,
+    weight: item.weight,
+    value: item.value
+  }
+  return (selectTag.innerHTML += `<option value=${JSON.stringify(
+    itemObject
+  )} class='select__option'>${JSON.stringify(itemObject)}</option>`)
+})
+
+//* fill the bag
+function createArrayObjectFromSelectTag () {
+  const capacity = parseFloat(
+    document.querySelector('.input-for-capacity').value
+  )
+  if (!capacity) {
+    document.querySelector(
+      '.resulting-bag'
+    ).innerHTML = '<span class=\'alertnocapacity\'>No select before adding the capacity.<br/> reload the page to try again<span>'
+    return
+  }
+  // create an objec
+  const optionValue = JSON.parse(selectTag.value)
+  console.log(optionValue)
+  const inputName = optionValue.name
+  const inputWeight = parseFloat(optionValue.weight)
+  const inputValue = parseFloat(optionValue.value)
+
+  addOjectsFromSelectTag(inputName, inputWeight, inputValue)
+  return { name: inputName, weight: inputWeight, value: inputValue }
+}
+
+//* fill the ul list from the select tag values
+
+function addOjectsFromSelectTag (inputName, inputWeight, inputValue) {
+  const capacity = parseFloat(
+    document.querySelector('.input-for-capacity').value
+  )
+
+  let totalWeight
+  let totalValue
+  let objectUsed = []
+
+  let noAddItem = false
+  const line = document.createElement('li')
+  line.className = 'li-for-objects'
+
+  Array.from(ulListOfObjects.children).forEach((line) => {
+    if (`"${line.children[0].textContent}"` === `"${inputName}"`) {
+      noAddItem = true
+    }
+  })
+
+  const pTag1 = document.createElement('p')
+  pTag1.appendChild(document.createTextNode(inputName))
+  pTag1.classList.add('ptag')
+
+  const pTag2 = document.createElement('p')
+  pTag2.appendChild(document.createTextNode(inputWeight))
+  pTag2.classList.add('ptag')
+
+  const pTag3 = document.createElement('p')
+  pTag3.classList.add('ptag')
+  pTag3.appendChild(document.createTextNode(inputValue))
+
+  line.appendChild(pTag1)
+  line.appendChild(pTag2)
+  line.appendChild(pTag3)
+
+  if (noAddItem) {
+    return
   } else {
-    let itemsSize = items.length; 
-    let tabMaxProfit = [];
+    totalValue = Array.from(ulListOfObjects.children).reduce(
+      (sum, curr) => sum + parseFloat(curr.children[2].textContent),
+      0
+    )
 
-    //create and initialize table of maximum profit
+    totalWeight = Array.from(ulListOfObjects.children).reduce(
+      (sum, curr) => sum + parseFloat(curr.children[1].textContent),
+      0
+    )
+    totalWeight += parseFloat(line.children[1].textContent)
+    totalValue += parseFloat(line.children[2].textContent)
+    console.log('totalWeight', totalWeight)
+    console.log('totalValue', totalValue)
 
-    for (let i = 0; i < itemsSize; i++) {
-      tabMaxProfit[i] = [];
-      for (let j = 0; j <= capacity; j++) {
-        tabMaxProfit[i][j] = 0;
-      }
-    }
-    // to print the initialized table of computation
-    console.log();
-    console.log("the initialize table is : ");
-    console.table(tabMaxProfit);
-    // to get a particular list of objects between an interval given
-    let newItems = [];
-    newItems = items;
-    let i = 0,
-      w = 0,
-      optimalValue = 0,
-      indexOptimalValue = 0;
-    //print list of object used for this case of searching the optimal value
-    console.log();
-    console.log("The list of objects used for computation of optimal value: ");
-    console.log(newItems);
-    console.log();
-    //fill the bags from o kg weight to the maximum capacity weight
+    objectUsed = Array.from(ulListOfObjects.children).map(
+      (object) => object.children[0].textContent
+    )
+    objectUsed.push(line.children[0].textContent)
+    ulListOfObjects.appendChild(line)
+  }
 
-    for (i = 1; i < newItems.length; i++) {
-      // get the weight and the value of the current item
-      let wi = newItems[i].weight;
-      let vi = newItems[i].value;
-      for (w = 1; w <= capacity; w++) {
-        // to have the right value in the table
-        if (w >= wi) {
-          tabMaxProfit[i][w] = Math.max(
-            tabMaxProfit[i - 1][w - wi] + vi,
-            tabMaxProfit[i - 1][w]
-          );
-        }
-      }
-      /* to get the optimal value of the table and its index. 
-    sometimes the optimal value is not right-bottom corner element */
-      if (tabMaxProfit[i][capacity] >= optimalValue) {
-        optimalValue = tabMaxProfit[i][capacity];
-        indexOptimalValue = i;
-      }
-    }
-    // return tabMaxProfit;
-    console.log();
-    console.log("The table after computing the optimal value is: ");
-    console.table(tabMaxProfit);
-    // }
-    // let optimalValue = tabMaxProfit[newItems.length - 1][capacity];
-    console.log(
-      "the optimal value for this sequence of objects is : " + optimalValue
-    );
-    // serching the items that led us to optimal value
-    // let nLines = newItems.length;
-    let c = capacity;
-    let objectUsed = [];
-    //going back in the table from the optimal value index to the original value index
-    for (let i = indexOptimalValue; i >= 1; i--) {
-      if (tabMaxProfit[i][c] !== tabMaxProfit[i - 1][c] && newItems[i].value) {
-        objectUsed.push(i);
-        c -= newItems[i].weight;
-        //to show the object used to achieve the goal while taking them
-        //  console.log(objectUsed);
-      }
+  console.log(totalWeight, capacity)
+  console.log(`${(totalWeight / capacity)}`)
+  console.log(`${Math.ceil(totalWeight / capacity)}`)
+  //* progress bar
+  progressBar.style.width = `${(totalWeight / capacity) * 100}%`
+  progressBar.innerHTML = `${Math.ceil((totalWeight / capacity) * 100)}%`
+
+  if (totalWeight > capacity) {
+    progressBar.style.background = 'red'
+  }
+
+  // resulting bag
+  const newBags = new Bags(
+    capacity + 'kg',
+    objectUsed.reverse(),
+    totalWeight + 'kg',
+    totalValue + '$'
+  )
+
+  resultBag = newBags
+  // document.querySelector(".resulting-bag").innerHTML = JSON.stringify(
+  //   newBags,
+  //   null,
+  //   2
+  // );
+
+  window.localStorage.setItem('lines', ulListOfObjects.innerHTML)
+  ulListOfObjects.innerHTML = window.localStorage.getItem('lines')
+  return newBags
+}
+
+function renderResult () {
+  if (ulListOfObjects.childElementCount) {
+    if (progressBar.style.background !== 'red') {
+      doneButton.style.background = '#0bda51'
+    } else {
+      doneButton.style.background = 'brown'
     }
 
-    console.log();
-    console.log(
-      "the list of elements chosen to rich the optimal value in order is: "
-    );
-    objectUsed = objectUsed.reverse();
-    console.log(objectUsed);
+    document.querySelector('.resulting-bag').innerHTML = JSON.stringify(
+      resultBag,
+      null,
+      2
+    )
+  } else {
+    document.querySelector('.resulting-bag').innerHTML = ''
+    window.location.reload()
   }
 }
-console.log(tableOfMaxProfit(20, items()));
+
+function displayResult () {
+  return renderResult()
+}
