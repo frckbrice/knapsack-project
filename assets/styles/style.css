@@ -220,7 +220,7 @@ h4 {
 }
 
 .progress {
-  background-color: va-barr(--dark);
+  background-color: var(--dark);
   border-radius: 20px;
   height: 30px;
   width: 95%;
