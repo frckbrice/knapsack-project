@@ -33,9 +33,10 @@ body {
 #main {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   font-family: "Shadows Into Light", cursive;
-  margin-top: 5%;
+  margin: 4rem;
+  gap: 2rem;
 }
 
 .title {
@@ -81,13 +82,17 @@ body {
   margin-left: 10px;
 }
 
+.alert__nocapacity {
+  color: red;
+}
+
 /* adding super container */
 
 #super-container-manual {
   display: flex;
   flex-direction: column;
-  margin: 1rem;
   flex: 1;
+  justify-content: flex-start;
 }
 
 #super-container {
@@ -99,6 +104,7 @@ body {
   height: 40px;
   width: 100%;
   padding: 0 1rem;
+  font-size: 1.25rem;
 }
 
 h4 {
@@ -111,7 +117,7 @@ h4 {
   flex-basis: 50%;
   height: fit-content;
   object-fit: contain;
-  background-color: rgba(165 42 42 / 37%);
+  background-color: rgba(172, 98, 98, 0.37);
   display: flex;
   flex-direction: column;
   row-gap: 5%;
@@ -123,7 +129,7 @@ h4 {
 #container {
   flex-basis: 45%;
   height: fit-content;
-  background-color: rgba(165 42 42 / 37%);
+  background-color: rgba(172, 98, 98, 0.37);
   display: flex;
   flex-direction: column;
   row-gap: 10%;
@@ -218,6 +224,9 @@ h4 {
 
 .resulting-bag {
   margin-top: 10%;
+  width: 100%;
+  text-align: center;
+  margin: 1.25rem 0;
 }
 
 .progress {
@@ -270,11 +279,18 @@ h4 {
 }
 
 @media screen and (max-width: 768px) {
-  #super-container {
+  #main {
     flex-direction: column;
-    row-gap: 2%;
-    width: 90vw;
-    height: 95%;
+    gap: 2rem;
+    margin: 0;
+    padding: 1rem;
+  }
+
+  #super-container-manual {
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.25rem;
   }
 
   body {
@@ -283,11 +299,9 @@ h4 {
   }
 
   #container {
-    font-size: 2vh;
-    padding: 2%;
-    height: auto;
-    justify-content: space-evenly;
     flex-grow: 1;
+    width: 100%;
+    font-size: 1.25rem;
   }
 
   #container2,
@@ -296,14 +310,6 @@ h4 {
     padding: 2%;
     height: 100%;
     flex-grow: 1;
-  }
-
-  #main1,
-  #main {
-    height: 89vh;
-    margin-top: 2%;
-    padding: 1%;
-    margin-bottom: 3%;
   }
 
   .div-for-head-of-list {
@@ -326,6 +332,7 @@ h4 {
   .done-btn {
     width: 25vw;
     height: 5vh;
+    border: none;
   }
 
   .progress {
@@ -333,16 +340,35 @@ h4 {
   }
 
   .done-div {
-    margin: 0 3%;
+    margin: 1rem 3%;
     text-align: center;
   }
 
   .progress-bar-div {
     margin: 0;
   }
+
+  #select__item--list {
+    font-size: 1rem;
+  }
 }
 
+@media screen and (max-width: 475px) {
+  #container h1 {
+    font-size: 1.25rem;
+  }
+
+  .input-for-capacity {
+    width: 90%;
+  }
+ }
+
 @media screen and (max-width: 425px) {
+
+  #main {
+    width: 100%;
+  }
+
   .add-object-btn,
   .done-btn {
     width: 30vw;
@@ -363,7 +389,8 @@ h4 {
   }
 
   .input-for-capacity {
-    width: 59%;
+    width: 85%;
+    margin-left: 15px;
   }
 
   .div-list-of-objects {
@@ -424,7 +451,7 @@ h4 {
   }
 
   .input-for-capacity {
-    width: 55%;
+    width: 80%;
   }
 
   .div-list-of-objects {
@@ -441,7 +468,7 @@ h4 {
   }
 
   #container {
-    min-height: 0;
+    min-height: fit-content;
     height: 100%;
     padding: 2%;
   }
@@ -473,7 +500,7 @@ h4 {
 
 @media screen and (max-width: 320px) {
   .input-for-capacity {
-    width: 45%;
+    width: 80%;
   }
 
   .progress {

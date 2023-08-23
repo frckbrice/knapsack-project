@@ -5,9 +5,11 @@ const ulListOfObjects = document.querySelector(".ul-of-objects");
 const selectTag = document.getElementById("select__item--list");
 const progressBar = document.querySelector(".progress-bar");
 
+let resultBag = {};
+
 //* add events
 
-doneButton.addEventListener("click", renderResult);
+doneButton.addEventListener("click", displayResult);
 selectTag.addEventListener("change", createArrayObjectFromSelectTag);
 
 function addOjects(e) {
@@ -110,7 +112,6 @@ const listOfOfFakeObjects = (min, max) => {
 //* the function to get the maximum value within a set of objects with weight and value
 
 function knapSack(e) {
-  //to get max capacity of the bag
   const capacity = parseFloat(
     document.querySelector(".input-for-capacity").value
   );
@@ -267,6 +268,15 @@ const selectListOfObjects = Array.from(fakeListOfFakeObjects).map((item) => {
 
 //* fill the bag
 function createArrayObjectFromSelectTag() {
+  const capacity = parseFloat(
+    document.querySelector(".input-for-capacity").value
+  );
+  if (!capacity) {
+    document.querySelector(
+      ".resulting-bag"
+    ).innerHTML = `<span class='alert__nocapacity'>No select before adding the capacity.<br/> reload the page to try again<span>`;
+    return;
+  }
   //create an objec
   const optionValue = JSON.parse(selectTag.value);
   console.log(optionValue);
@@ -281,12 +291,6 @@ function createArrayObjectFromSelectTag() {
 //* fill the ul list from the select tag values
 
 function addOjectsFromSelectTag(inputName, inputWeight, inputValue) {
-  // disactivate done button and add to list button
-
-  // addObjectButton.style.display = "none";
-  // doneButton.style.display = "none";
-
-  //to get max capacity of the bag
   const capacity = parseFloat(
     document.querySelector(".input-for-capacity").value
   );
@@ -360,21 +364,38 @@ function addOjectsFromSelectTag(inputName, inputWeight, inputValue) {
     totalValue + "$"
   );
 
-document.querySelector(".resulting-bag").innerHTML = JSON.stringify(
-  newBags,
-  null,
-  2
-);
+  resultBag = newBags;
+  // document.querySelector(".resulting-bag").innerHTML = JSON.stringify(
+  //   newBags,
+  //   null,
+  //   2
+  // );
 
   localStorage.setItem("lines", ulListOfObjects.innerHTML);
   ulListOfObjects.innerHTML = localStorage.getItem("lines");
   return newBags;
 }
 
-function renderResult(resultObject) {
-  document.querySelector(".resulting-bag").innerHTML = JSON.stringify(
-    resultObject,
-    null,
-    2
-  );
+function renderResult() {
+  if (ulListOfObjects.childElementCount) {
+    if (progressBar.style.background !== "red") {
+      doneButton.style.background = "#0bda51";
+    } else {
+      doneButton.style.background = "brown";
+    }
+
+    document.querySelector(".resulting-bag").innerHTML = JSON.stringify(
+      resultBag,
+      null,
+      2
+    );
+  } else {
+    document.querySelector(".resulting-bag").innerHTML = "";
+    window.location.reload();
+    return;
+  }
+}
+
+function displayResult() {
+  return renderResult();
 }
