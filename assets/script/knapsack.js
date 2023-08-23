@@ -1,14 +1,14 @@
 //* to bind html elements
 
-const addObjectButton = document.querySelector(".add-object-btn");
 const doneButton = document.querySelector(".done-btn");
 const ulListOfObjects = document.querySelector(".ul-of-objects");
+const selectTag = document.getElementById("select__item--list");
+const progressBar = document.querySelector(".progress-bar");
 
 //* add events
-// doneButton.addEventListener("click", displayResults);
-addObjectButton.addEventListener("click", addOjects);
-addObjectButton.addEventListener("click", createArrayObject);
-doneButton.addEventListener("click", knapSack);
+
+doneButton.addEventListener("click", renderResult);
+selectTag.addEventListener("change", createArrayObjectFromSelectTag);
 
 function addOjects(e) {
   e.preventDefault();
@@ -100,7 +100,7 @@ const listOfOfFakeObjects = (min, max) => {
   for (let i = min; i <= max; i++) {
     let n1 = Math.floor(Math.random() * (max - min)) + min;
     let n2 = Math.floor(Math.random() * (max - min)) + min;
-    arr.push(new Objects(`name${i}`, `${n1}`, `${n2}`));
+    arr.push(new Objects(`rebase${i}`, `${n1}`, `${n2}`));
     count++;
     if (count === 20) break;
   }
@@ -114,12 +114,13 @@ function knapSack(e) {
   const capacity = parseFloat(
     document.querySelector(".input-for-capacity").value
   );
+
   // to get the list of objets to choose from
   let items = [];
   if (ulListOfObjects.childElementCount === 0) {
     items = listOfOfFakeObjects(1, 100);
   } else {
-     items = createArrayObject();
+    items = createArrayObject();
   }
 
   // some check first
@@ -241,9 +242,139 @@ function knapSack(e) {
 //* fixed list of objects/*
 
 // document.querySelector(".listofFakeObjects").innerHTML = "hello";
-document.querySelector(".listofFakeObjects").innerHTML = JSON.stringify(
-  listOfOfFakeObjects(1, 100)
-);
-// knapSack(e)
-// console.log(JSON.parse(listOfOfFakeObjects(1,100)));
+// document.querySelector(".listofFakeObjects").innerHTML = JSON.stringify(
+//   listOfOfFakeObjects(1, 100)
+// );
 
+//*build a select tag from array of fake objects
+
+// const fakeListOfFakeObjects = JSON.stringify(listOfOfFakeObjects(1, 100));
+
+const fakeListOfFakeObjects = listOfOfFakeObjects(1, 100);
+console.log(Array.from(fakeListOfFakeObjects));
+
+//* fill the select tag with fake data
+const selectListOfObjects = Array.from(fakeListOfFakeObjects).map((item) => {
+  const itemObject = {
+    name: item.name,
+    weight: item.weight,
+    value: item.value,
+  };
+  return (selectTag.innerHTML += `<option value=${JSON.stringify(
+    itemObject
+  )} class='select__option'>${JSON.stringify(itemObject)}</option>`);
+});
+
+//* fill the bag
+function createArrayObjectFromSelectTag() {
+  //create an objec
+  const optionValue = JSON.parse(selectTag.value);
+  console.log(optionValue);
+  let inputName = optionValue.name;
+  let inputWeight = parseFloat(optionValue.weight);
+  let inputValue = parseFloat(optionValue.value);
+
+  addOjectsFromSelectTag(inputName, inputWeight, inputValue);
+  return { name: inputName, weight: inputWeight, value: inputValue };
+}
+
+//* fill the ul list from the select tag values
+
+function addOjectsFromSelectTag(inputName, inputWeight, inputValue) {
+  // disactivate done button and add to list button
+
+  // addObjectButton.style.display = "none";
+  // doneButton.style.display = "none";
+
+  //to get max capacity of the bag
+  const capacity = parseFloat(
+    document.querySelector(".input-for-capacity").value
+  );
+
+  let totalWeight;
+  let totalValue;
+  let objectUsed = [];
+
+  let noAddItem = false;
+  const line = document.createElement("li");
+  line.className = "li-for-objects";
+
+  Array.from(ulListOfObjects.children).forEach((line) => {
+    if (`"${line.children[0].textContent}"` === `"${inputName}"`) {
+      noAddItem = true;
+    }
+  });
+
+  const pTag1 = document.createElement("p");
+  pTag1.appendChild(document.createTextNode(inputName));
+  pTag1.classList.add("ptag");
+
+  const pTag2 = document.createElement("p");
+  pTag2.appendChild(document.createTextNode(inputWeight));
+  pTag2.classList.add("ptag");
+
+  const pTag3 = document.createElement("p");
+  pTag3.classList.add("ptag");
+  pTag3.appendChild(document.createTextNode(inputValue));
+
+  line.appendChild(pTag1);
+  line.appendChild(pTag2);
+  line.appendChild(pTag3);
+
+  if (noAddItem) {
+    return;
+  } else {
+    totalValue = Array.from(ulListOfObjects.children).reduce(
+      (sum, curr) => sum + parseFloat(curr.children[2].textContent),
+      0
+    );
+
+    totalWeight = Array.from(ulListOfObjects.children).reduce(
+      (sum, curr) => sum + parseFloat(curr.children[1].textContent),
+      0
+    );
+    totalWeight += parseFloat(line.children[1].textContent);
+    totalValue += parseFloat(line.children[2].textContent);
+    console.log("totalWeight", totalWeight);
+    console.log("totalValue", totalValue);
+
+    objectUsed = Array.from(ulListOfObjects.children).map(
+      (object) => object.children[0].textContent
+    );
+    objectUsed.push(line.children[0].textContent);
+    ulListOfObjects.appendChild(line);
+  }
+  //*progress bar
+  progressBar.style.width = `${(totalWeight / capacity) * 100}%`;
+  progressBar.innerHTML = `${Math.ceil(eval(totalWeight / capacity) * 100)}%`;
+
+  if (totalWeight > capacity) {
+    progressBar.style.background = "red";
+  }
+
+  // resulting bag
+  let newBags = new bags(
+    capacity + "kg",
+    objectUsed.reverse(),
+    totalWeight + "kg",
+    totalValue + "$"
+  );
+
+document.querySelector(".resulting-bag").innerHTML = JSON.stringify(
+  newBags,
+  null,
+  2
+);
+
+  localStorage.setItem("lines", ulListOfObjects.innerHTML);
+  ulListOfObjects.innerHTML = localStorage.getItem("lines");
+  return newBags;
+}
+
+function renderResult(resultObject) {
+  document.querySelector(".resulting-bag").innerHTML = JSON.stringify(
+    resultObject,
+    null,
+    2
+  );
+}

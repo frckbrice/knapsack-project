@@ -21,8 +21,7 @@ body {
   width: 100vw;
   height: 100vh;
   position: relative;
-  background: linear-gradient(rgba(0 0 0 / 50%), rgba(0 0 0 / 50)),
-    url("../images/bgknapsack.jpg");
+  background: url("../images/bgknapsack.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -84,11 +83,22 @@ body {
 
 /* adding super container */
 
+#super-container-manual {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  flex: 1;
+}
+
 #super-container {
   display: flex;
   gap: 3%;
-  font-family: "Ysabeau", sans-serif;
-  /* background-color: #885cf6; */
+}
+
+#select__item--list {
+  height: 40px;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 h4 {
@@ -98,7 +108,6 @@ h4 {
 /* adding container1 */
 
 #container1 {
-  /* font-size: 3vh; */
   flex-basis: 50%;
   height: fit-content;
   object-fit: contain;
@@ -109,11 +118,9 @@ h4 {
   padding: 15px;
   color: aliceblue;
   border: 1px solid #ddd;
-  /* flex-wrap: wrap; */
 }
 
 #container {
-  /* font-size: 3vh; */
   flex-basis: 45%;
   height: fit-content;
   background-color: rgba(165 42 42 / 37%);
@@ -121,18 +128,15 @@ h4 {
   flex-direction: column;
   row-gap: 10%;
   padding: 15px;
-  /* font-family: 'Mouse Memoirs', sans-serif; */
   color: aliceblue;
   min-height: 60vh;
   border: 1px solid #ddd;
   position: relative;
-  /* font-family: "Shadows Into Light", cursive; */
 }
 
 .div-for-form {
   display: flex;
   gap: 0.7em;
-  /* font-size: 3vh; */
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -167,6 +171,7 @@ h4 {
 .div-list-of-objects {
   margin-top: 0;
   border: 1px solid #ccc;
+  background-color: rgba(165 42 42 / 37%);
 }
 
 .max-capacity {
@@ -238,6 +243,7 @@ h4 {
   height: 100%;
   width: 0; /* we need the progress bar to start from0*/
   transition: 1s ease 0.3s;
+  max-width: 100%;
 }
 
 .span2 {
@@ -245,18 +251,17 @@ h4 {
   color: chartreuse;
 }
 
-
 .listofFakeObjects {
   display: flex;
   justify-content: center;
-  color: white;
+  color: rgb(6, 6, 6);
   margin: 1%;
 }
 
 .titleliste {
   display: flex;
   justify-content: center;
-  color: white;
+  color: rgb(10, 10, 10);
 }
 
 .spanlist {
@@ -285,6 +290,7 @@ h4 {
     flex-grow: 1;
   }
 
+  #container2,
   #container1 {
     font-size: 2vh;
     padding: 2%;
@@ -292,6 +298,7 @@ h4 {
     flex-grow: 1;
   }
 
+  #main1,
   #main {
     height: 89vh;
     margin-top: 2%;
@@ -307,7 +314,7 @@ h4 {
   .input-for-capacity {
     width: 65%;
     font-size: 2vh;
-  } 
+  }
 
   .div-value,
   .div-weight,
@@ -333,9 +340,7 @@ h4 {
   .progress-bar-div {
     margin: 0;
   }
-
 }
-
 
 @media screen and (max-width: 425px) {
   .add-object-btn,
@@ -392,11 +397,10 @@ h4 {
     overflow: hidden;
   }
 
-   .progress {
+  .progress {
     height: 28px;
   }
 }
-
 
 @media screen and (max-width: 375px) {
   .add-object-btn,
@@ -468,7 +472,7 @@ h4 {
 }
 
 @media screen and (max-width: 320px) {
-.input-for-capacity {
+  .input-for-capacity {
     width: 45%;
   }
 
@@ -476,14 +480,3 @@ h4 {
     height: 25px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
