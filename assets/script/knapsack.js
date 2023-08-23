@@ -150,11 +150,11 @@ function addOjectsFromSelectTag (inputName, inputWeight, inputValue) {
   }
 
   console.log(totalWeight, capacity)
-  console.log(`${(totalWeight / capacity)}`);
-  console.log(`${Math.ceil(totalWeight / capacity)}`);
+  console.log(`${(totalWeight / capacity)}`)
+  console.log(`${Math.ceil(totalWeight / capacity)}`)
   //* progress bar
-  progressBar.style.width = `${(totalWeight / capacity) * 100}%`;
-  progressBar.innerHTML = `${Math.ceil((totalWeight / capacity) * 100)}%`;
+  progressBar.style.width = `${(totalWeight / capacity) * 100}%`
+  progressBar.innerHTML = `${Math.ceil((totalWeight / capacity) * 100)}%`
 
   if (totalWeight > capacity) {
     progressBar.style.background = 'red'
@@ -175,8 +175,8 @@ function addOjectsFromSelectTag (inputName, inputWeight, inputValue) {
   //   2
   // );
 
-  localStorage.setItem('lines', ulListOfObjects.innerHTML)
-  ulListOfObjects.innerHTML = localStorage.getItem('lines')
+  window.localStorage.setItem('lines', ulListOfObjects.innerHTML)
+  ulListOfObjects.innerHTML = window.localStorage.getItem('lines')
   return newBags
 }
 
