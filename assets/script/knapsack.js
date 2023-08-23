@@ -148,9 +148,13 @@ function addOjectsFromSelectTag (inputName, inputWeight, inputValue) {
     objectUsed.push(line.children[0].textContent)
     ulListOfObjects.appendChild(line)
   }
+
+  console.log(totalWeight, capacity)
+  console.log(`${(totalWeight / capacity)}`);
+  console.log(`${Math.ceil(totalWeight / capacity)}`);
   //* progress bar
-  progressBar.style.width = `${(totalWeight / capacity) * 100}%`
-  progressBar.innerHTML = `${Math.ceil(totalWeight / capacity) * 100}%`
+  progressBar.style.width = `${(totalWeight / capacity) * 100}%`;
+  progressBar.innerHTML = `${Math.ceil(eval(totalWeight / capacity) * 100)}%`;
 
   if (totalWeight > capacity) {
     progressBar.style.background = 'red'
