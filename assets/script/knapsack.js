@@ -154,7 +154,7 @@ function addOjectsFromSelectTag (inputName, inputWeight, inputValue) {
   console.log(`${Math.ceil(totalWeight / capacity)}`);
   //* progress bar
   progressBar.style.width = `${(totalWeight / capacity) * 100}%`;
-  progressBar.innerHTML = `${Math.ceil(eval(totalWeight / capacity) * 100)}%`;
+  progressBar.innerHTML = `${Math.ceil((totalWeight / capacity) * 100)}%`;
 
   if (totalWeight > capacity) {
     progressBar.style.background = 'red'
