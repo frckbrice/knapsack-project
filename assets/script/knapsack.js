@@ -21,7 +21,7 @@ function Objects (name, weight, value) {
 }
 
 //*  the knapSack constructor
-function bags (capacity, items, weight, value) {
+function Bags (capacity, items, weight, value) {
   this.capacity = capacity
   this.items = items
   this.weight = weight
@@ -55,7 +55,7 @@ const fakeListOfFakeObjects = listOfOfFakeObjects(1, 100)
 console.log(Array.from(fakeListOfFakeObjects))
 
 //* fill the select tag with fake data
-const selectListOfObjects = Array.from(fakeListOfFakeObjects).map((item) => {
+Array.from(fakeListOfFakeObjects).map((item) => {
   const itemObject = {
     name: item.name,
     weight: item.weight,
@@ -150,14 +150,14 @@ function addOjectsFromSelectTag (inputName, inputWeight, inputValue) {
   }
   //* progress bar
   progressBar.style.width = `${(totalWeight / capacity) * 100}%`
-  progressBar.innerHTML = `${Math.ceil(eval(totalWeight / capacity) * 100)}%`
+  progressBar.innerHTML = `${Math.ceil(totalWeight / capacity) * 100}%`
 
   if (totalWeight > capacity) {
     progressBar.style.background = 'red'
   }
 
   // resulting bag
-  const newBags = new bags(
+  const newBags = new Bags(
     capacity + 'kg',
     objectUsed.reverse(),
     totalWeight + 'kg',
